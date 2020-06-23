@@ -1,5 +1,5 @@
 {
-    "name": "bastsys/user-bundle",
+    "name": "bastsys/utils-bundle",
     "description": "Symfony user functionality",
     "type": "symfony-bundle",
     "license": "None",
@@ -10,5 +10,13 @@
         }
     ],
     "minimum-stability": "stable",
-    "require": {}
+    "require": {
+        "symfony/framework-bundle": "^5.1",
+        "ramsey/uuid": "^4.0",
+        "doctrine/annotations": "^1.10",
+        "symfony/orm-pack": "^1.0"
+    },
+    "autoload": {
+        "BastSys\\UserBundle\\": ""
+    }
 }
