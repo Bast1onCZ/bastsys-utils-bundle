@@ -1,6 +1,6 @@
 {
     "name": "bastsys/utils-bundle",
-    "description": "Symfony user functionality",
+    "description": "Symfony basic utils",
     "type": "symfony-bundle",
     "license": "None",
     "authors": [
