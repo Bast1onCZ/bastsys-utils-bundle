@@ -1,0 +1,14 @@
+{
+    "name": "bastsys/user-bundle",
+    "description": "Symfony user functionality",
+    "type": "symfony-bundle",
+    "license": "None",
+    "authors": [
+        {
+            "name": "klobaska",
+            "email": "mir.klobaska@seznam.cz"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}
