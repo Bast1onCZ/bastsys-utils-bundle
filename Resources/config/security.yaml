@@ -1,0 +1,5 @@
+services:
+    bastsys.utils_bundle.security.password_encoder:
+        public: true
+        class: BastSys\UtilsBundle\Security\PasswordEncoder
+
