@@ -1,12 +1,12 @@
 <?php
 
-namespace App\ResourceBundle\Model\ListStructure\Input;
+namespace BastSys\UtilsBundle\Model\ListStructure\Input;
 
 use Doctrine\ORM\QueryBuilder;
 
 /**
  * Class AFilter
- * @package App\ResourceBundle\Model\ListStructure\Input
+ * @package BastSys\UtilsBundle\Model\ListStructure\Input
  * @author mirkl
  */
 abstract class AFilter

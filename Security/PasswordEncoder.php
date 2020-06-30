@@ -6,7 +6,7 @@ use Symfony\Component\Security\Core\Encoder\PasswordEncoderInterface;
 
 /**
  * Class PasswordEncoder
- * @package App\ResourceBundle\Security
+ * @package BastSys\UtilsBundle\Security
  * @author mirkl
  */
 class PasswordEncoder implements PasswordEncoderInterface {

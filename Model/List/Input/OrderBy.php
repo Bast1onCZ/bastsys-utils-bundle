@@ -1,12 +1,12 @@
 <?php
 
-namespace App\ResourceBundle\Model\ListStructure\Input;
+namespace BastSys\UtilsBundle\Model\ListStructure\Input;
 
 use Iterator;
 
 /**
  * Class OrderBy
- * @package App\ResourceBundle\Model\ListStructure\Input
+ * @package BastSys\UtilsBundle\Model\ListStructure\Input
  * @author mirkl
  */
 class OrderBy extends \ArrayIterator implements Iterator

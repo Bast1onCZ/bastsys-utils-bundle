@@ -1,12 +1,12 @@
 <?php
 
-namespace App\ResourceBundle\Model\ListStructure\Input;
+namespace BastSys\UtilsBundle\Model\ListStructure\Input;
 
-use App\ResourceBundle\Model\ListStructure\Output\UnknownPageException;
+use BastSys\UtilsBundle\Model\ListStructure\Output\UnknownPageException;
 
 /**
  * Class Pagination
- * @package App\ResourceBundle\Model\ListStructure\Input
+ * @package BastSys\UtilsBundle\Model\ListStructure\Input
  * @author mirkl
  */
 class Pagination

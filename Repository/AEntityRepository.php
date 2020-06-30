@@ -2,11 +2,11 @@
 
 namespace BastSys\UtilsBundle\Repository;
 
-use App\ResourceBundle\Model\ListStructure\Input\AFilter;
-use App\ResourceBundle\Model\ListStructure\Input\OrderBy;
-use App\ResourceBundle\Model\ListStructure\Input\Pagination;
-use App\ResourceBundle\Model\ListStructure\Output\ListResult;
 use BastSys\UtilsBundle\Exception\Entity\EntityNotFoundByIdException;
+use BastSys\UtilsBundle\Model\ListStructure\Input\AFilter;
+use BastSys\UtilsBundle\Model\ListStructure\Input\OrderBy;
+use BastSys\UtilsBundle\Model\ListStructure\Input\Pagination;
+use BastSys\UtilsBundle\Model\ListStructure\Output\ListResult;
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\Common\Persistence\ObjectRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -147,9 +147,9 @@ abstract class AEntityRepository implements IEntityRepository
     /**
      * Prepares paginator for given parameters
      *
-     * @param \App\ResourceBundle\Model\ListStructure\Input\Pagination $pagination
-     * @param \App\ResourceBundle\Model\ListStructure\Input\OrderBy $orderBy
-     * @param \App\ResourceBundle\Model\ListStructure\Input\AFilter|null $filter
+     * @param \BastSys\UtilsBundle\Model\ListStructure\Input\Pagination $pagination
+     * @param \BastSys\UtilsBundle\Model\ListStructure\Input\OrderBy $orderBy
+     * @param \BastSys\UtilsBundle\Model\ListStructure\Input\AFilter|null $filter
      *
      * @return Paginator
      */
@@ -167,9 +167,9 @@ abstract class AEntityRepository implements IEntityRepository
     /**
      * Prepares QueryBuilder to perform list query. Override this to applyOnEntity filter
      *
-     * @param \App\ResourceBundle\Model\ListStructure\Input\Pagination $pagination
-     * @param \App\ResourceBundle\Model\ListStructure\Input\OrderBy $orderBy
-     * @param \App\ResourceBundle\Model\ListStructure\Input\AFilter $filter
+     * @param \BastSys\UtilsBundle\Model\ListStructure\Input\Pagination $pagination
+     * @param \BastSys\UtilsBundle\Model\ListStructure\Input\OrderBy $orderBy
+     * @param \BastSys\UtilsBundle\Model\ListStructure\Input\AFilter $filter
      *
      * @return QueryBuilder
      */

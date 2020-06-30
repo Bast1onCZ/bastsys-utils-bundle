@@ -1,12 +1,12 @@
 <?php
 
-namespace App\ResourceBundle\Model\ListStructure\Output;
+namespace BastSys\UtilsBundle\Model\ListStructure\Output;
 
-use App\ResourceBundle\Model\ListStructure\Input\Pagination;
+use BastSys\UtilsBundle\Model\ListStructure\Input\Pagination;
 
 /**
  * Class PageInfo
- * @package App\ResourceBundle\Model\ListStructure\Output
+ * @package BastSys\UtilsBundle\Model\ListStructure\Output
  * @author  mirkl
  */
 class PageInfo

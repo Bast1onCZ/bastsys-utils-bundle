@@ -1,12 +1,12 @@
 <?php
 
-namespace App\ResourceBundle\Model\ListStructure\Input;
+namespace BastSys\UtilsBundle\Model\ListStructure\Input;
 
 use BastSys\UtilsBundle\Model\IEnumClass;
 
 /**
  * Class OrderByDirection
- * @package App\ResourceBundle\Model\ListStructure\Input
+ * @package BastSys\UtilsBundle\Model\ListStructure\Input
  * @author mirkl
  */
 class OrderByDirection implements IEnumClass

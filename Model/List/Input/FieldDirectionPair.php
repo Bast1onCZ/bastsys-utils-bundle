@@ -1,10 +1,10 @@
 <?php
 
-namespace App\ResourceBundle\Model\ListStructure\Input;
+namespace BastSys\UtilsBundle\Model\ListStructure\Input;
 
 /**
  * Class FieldDirectionPair
- * @package App\ResourceBundle\Model\ListStructure\Input
+ * @package BastSys\UtilsBundle\Model\ListStructure\Input
  * @author mirkl
  */
 class FieldDirectionPair
