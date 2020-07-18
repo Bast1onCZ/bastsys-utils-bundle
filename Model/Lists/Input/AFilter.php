@@ -1,12 +1,13 @@
 <?php
+declare(strict_types=1);
 
-namespace BastSys\UtilsBundle\Model\ListStructure\Input;
+namespace BastSys\UtilsBundle\Model\Lists\Input;
 
 use Doctrine\ORM\QueryBuilder;
 
 /**
  * Class AFilter
- * @package BastSys\UtilsBundle\Model\ListStructure\Input
+ * @package BastSys\UtilsBundle\Model\Lists\Input
  * @author mirkl
  */
 abstract class AFilter

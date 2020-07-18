@@ -1,13 +1,13 @@
 <?php
 
-namespace BastSys\UtilsBundle\Model\ListStructure\Output;
+namespace BastSys\UtilsBundle\Model\Lists\Output;
 
-use BastSys\UtilsBundle\Model\ListStructure\Input\Pagination;
+use BastSys\UtilsBundle\Model\Lists\Input\Pagination;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 
 /**
  * Class ListResult
- * @package BastSys\UtilsBundle\Model\ListStructure\Output
+ * @package BastSys\UtilsBundle\Model\Lists\Output
  * @author mirkl
  */
 class ListResult

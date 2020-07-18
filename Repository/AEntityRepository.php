@@ -3,10 +3,10 @@
 namespace BastSys\UtilsBundle\Repository;
 
 use BastSys\UtilsBundle\Exception\Entity\EntityNotFoundByIdException;
-use BastSys\UtilsBundle\Model\ListStructure\Input\AFilter;
-use BastSys\UtilsBundle\Model\ListStructure\Input\OrderBy;
-use BastSys\UtilsBundle\Model\ListStructure\Input\Pagination;
-use BastSys\UtilsBundle\Model\ListStructure\Output\ListResult;
+use BastSys\UtilsBundle\Model\Lists\Input\AFilter;
+use BastSys\UtilsBundle\Model\Lists\Input\OrderBy;
+use BastSys\UtilsBundle\Model\Lists\Input\Pagination;
+use BastSys\UtilsBundle\Model\Lists\Output\ListResult;
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\Common\Persistence\ObjectRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -147,9 +147,9 @@ abstract class AEntityRepository implements IEntityRepository
     /**
      * Prepares paginator for given parameters
      *
-     * @param \BastSys\UtilsBundle\Model\ListStructure\Input\Pagination $pagination
-     * @param \BastSys\UtilsBundle\Model\ListStructure\Input\OrderBy $orderBy
-     * @param \BastSys\UtilsBundle\Model\ListStructure\Input\AFilter|null $filter
+     * @param \BastSys\UtilsBundle\Model\Lists\Input\Pagination $pagination
+     * @param \BastSys\UtilsBundle\Model\Lists\Input\OrderBy $orderBy
+     * @param \BastSys\UtilsBundle\Model\Lists\Input\AFilter|null $filter
      *
      * @return Paginator
      */
@@ -167,9 +167,9 @@ abstract class AEntityRepository implements IEntityRepository
     /**
      * Prepares QueryBuilder to perform list query. Override this to applyOnEntity filter
      *
-     * @param \BastSys\UtilsBundle\Model\ListStructure\Input\Pagination $pagination
-     * @param \BastSys\UtilsBundle\Model\ListStructure\Input\OrderBy $orderBy
-     * @param \BastSys\UtilsBundle\Model\ListStructure\Input\AFilter $filter
+     * @param \BastSys\UtilsBundle\Model\Lists\Input\Pagination $pagination
+     * @param \BastSys\UtilsBundle\Model\Lists\Input\OrderBy $orderBy
+     * @param \BastSys\UtilsBundle\Model\Lists\Input\AFilter $filter
      *
      * @return QueryBuilder
      */

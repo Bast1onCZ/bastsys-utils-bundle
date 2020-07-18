@@ -1,10 +1,10 @@
 <?php
 
-namespace BastSys\UtilsBundle\Model\ListStructure\Output;
+namespace BastSys\UtilsBundle\Model\Lists\Output;
 
 /**
  * Class UnknownPageException
- * @package BastSys\UtilsBundle\Model\ListStructure\Output
+ * @package BastSys\UtilsBundle\Model\Lists\Output
  * @author  mirkl
  */
 class UnknownPageException extends \Exception
