@@ -97,4 +97,11 @@ class DateTimeInterval
             $interval->contains($this->start) ||
             $interval->contains($this->end);
     }
+
+    /**
+     * @return \DateInterval
+     */
+    public function getLength(): \DateInterval {
+        return $this->start->diff($this->end);
+    }
 }

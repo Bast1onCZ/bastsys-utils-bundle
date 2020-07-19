@@ -65,4 +65,18 @@ class DateTimeIntervalTest extends TestCase
         $this->assertFalse($interval->contains($interval1), '$interval does not contain $interval1');
         $this->assertFalse($interval1->contains($interval), '$interval1 does not contain $interval');
     }
+
+    /**
+     * @throws \Exception
+     */
+    public function testLength() {
+        $interval = new DateTimeInterval(
+            new \DateTimeImmutable('1 second'),
+            new \DateTimeImmutable('2 seconds')
+        );
+        $length = $interval->getLength();
+
+        $this->assertEquals(1, $length->s);
+        $this->assertEquals(0, $length->invert);
+    }
 }
