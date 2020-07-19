@@ -24,7 +24,7 @@ trait TExpirable
      * @throws \Exception
      */
     public function hasExpired(): bool {
-        return $this->expiration && $this->expiration < new \DateTime();
+        return $this->expiration && $this->expiration < new \DateTimeImmutable();
     }
 
     /**

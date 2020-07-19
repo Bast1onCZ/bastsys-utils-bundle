@@ -31,8 +31,8 @@ trait TTimestampable
 	 * @throws \Exception
 	 */
 	protected function setCreatedAt(): void {
-		$this->createdAt = new \DateTime();
-		$this->updatedAt = new \DateTime();
+		$this->createdAt = new \DateTimeImmutable();
+		$this->updatedAt = new \DateTimeImmutable();
 	}
 
     /**
@@ -41,7 +41,7 @@ trait TTimestampable
      * @throws \Exception
      */
     protected function setUpdatedAt(): void {
-		$this->updatedAt = new \DateTime();
+		$this->updatedAt = new \DateTimeImmutable();
 	}
 
 	/**

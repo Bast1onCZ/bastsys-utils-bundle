@@ -11,50 +11,68 @@ namespace BastSys\UtilsBundle\Model\DateTimeSet;
 class DateTimeInterval
 {
     /**
-     * @var \DateTime
+     * @var \DateTimeImmutable
      */
-    private \DateTime $start;
+    private \DateTimeImmutable $start;
     /**
-     * @var \DateTime
+     * @var \DateTimeImmutable
      */
-    private \DateTime $end;
+    private \DateTimeImmutable $end;
 
     /**
      * DateTimeInterval constructor.
-     * @param \DateTime $start
-     * @param \DateTime $end
+     * @param \DateTimeImmutable $start
+     * @param \DateTimeImmutable $end
      */
-    public function __construct(\DateTime $start, \DateTime $end)
+    public function __construct(\DateTimeImmutable $start, \DateTimeImmutable $end)
     {
         $this->start = $start;
         $this->end = $end;
     }
 
     /**
-     * @return \DateTime
+     * @return \DateTimeImmutable
      */
-    public function getStart(): \DateTime
+    public function getStart(): \DateTimeImmutable
     {
         return $this->start;
     }
 
     /**
-     * @return \DateTime
+     * @return \DateTimeImmutable
      */
-    public function getEnd(): \DateTime
+    public function getEnd(): \DateTimeImmutable
     {
         return $this->end;
     }
 
     /**
+     * @param \DateTimeImmutable $start
+     * @return DateTimeInterval new instance
+     */
+    public function setStart(\DateTimeImmutable $start): DateTimeInterval
+    {
+        return new DateTimeInterval($start, $this->end);
+    }
+
+    /**
+     * @param \DateTimeImmutable $end
+     * @return DateTimeInterval new instance
+     */
+    public function setEnd(\DateTimeImmutable $end): DateTimeInterval
+    {
+        return new DateTimeInterval($this->start, $end);
+    }
+
+    /**
      * Checks whether this complex interval fully contains given value
      *
-     * @param \DateTime|DateTimeInterval $entity
+     * @param \DateTime|\DateTimeImmutable|DateTimeInterval $entity
      * @return bool
      * @throws \Exception
      */
     public function contains($entity): bool {
-        if($entity instanceof \DateTime) {
+        if($entity instanceof \DateTime || $entity instanceof \DateTimeImmutable) {
             // compare single interval
             return $this->start <= $entity && $entity <= $this->end;
         } else if($entity instanceof DateTimeInterval) {
