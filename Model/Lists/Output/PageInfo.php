@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace BastSys\UtilsBundle\Model\Lists\Output;
 
@@ -17,15 +18,20 @@ class PageInfo
 	/** @var bool */
 	private $hasNextPage;
 
-	public function __construct(Pagination $pagination, int $totalCount)
+    /**
+     * PageInfo constructor.
+     * @param Pagination $pagination
+     * @param int $totalCount
+     */
+    public function __construct(Pagination $pagination, int $totalCount)
 	{
 		$this->pagination = $pagination;
 		$this->hasNextPage = $pagination->getLimit() + $pagination->getOffset() < $totalCount;
 	}
 
-	/**
-	 * @return int
-	 */
+    /**
+     * @return bool
+     */
 	public function getHasNextPage(): bool
 	{
 		return $this->hasNextPage;

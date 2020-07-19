@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace BastSys\UtilsBundle\Model\Interval;
 
@@ -40,12 +41,14 @@ class Interval
 	/** @var bool */
 	private $maxContained;
 
-	/**
-	 * Interval constructor.
-	 *
-	 * @param int|float $min
-	 * @param int|float $max
-	 */
+    /**
+     * Interval constructor.
+     *
+     * @param int|float $min
+     * @param bool $minContained
+     * @param int|float $max
+     * @param bool $maxContained
+     */
 	public function __construct($min = PHP_INT_MIN, bool $minContained = true, $max = PHP_INT_MAX, bool $maxContained = true)
 	{
 		if (!is_numeric($min) || !is_numeric($max)) {

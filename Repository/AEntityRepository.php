@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace BastSys\UtilsBundle\Repository;
 
@@ -147,9 +148,9 @@ abstract class AEntityRepository implements IEntityRepository
     /**
      * Prepares paginator for given parameters
      *
-     * @param \BastSys\UtilsBundle\Model\Lists\Input\Pagination $pagination
-     * @param \BastSys\UtilsBundle\Model\Lists\Input\OrderBy $orderBy
-     * @param \BastSys\UtilsBundle\Model\Lists\Input\AFilter|null $filter
+     * @param Pagination $pagination
+     * @param OrderBy $orderBy
+     * @param AFilter|null $filter
      *
      * @return Paginator
      */
@@ -167,9 +168,9 @@ abstract class AEntityRepository implements IEntityRepository
     /**
      * Prepares QueryBuilder to perform list query. Override this to applyOnEntity filter
      *
-     * @param \BastSys\UtilsBundle\Model\Lists\Input\Pagination $pagination
-     * @param \BastSys\UtilsBundle\Model\Lists\Input\OrderBy $orderBy
-     * @param \BastSys\UtilsBundle\Model\Lists\Input\AFilter $filter
+     * @param Pagination $pagination
+     * @param OrderBy $orderBy
+     * @param AFilter $filter
      *
      * @return QueryBuilder
      */

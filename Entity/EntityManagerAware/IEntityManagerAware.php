@@ -1,9 +1,9 @@
 <?php
+declare(strict_types=1);
 
 namespace BastSys\UtilsBundle\Entity\EntityManagerAware;
 
 use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\ORM\Event\LifecycleEventArgs;
 
 /**
  * Interface IEntityManagerAware
@@ -13,7 +13,7 @@ use Doctrine\ORM\Event\LifecycleEventArgs;
 interface IEntityManagerAware
 {
     /**
-     * @param LifecycleEventArgs $event
+     * @param EntityManagerInterface $event
      */
     public function injectEntityManager(EntityManagerInterface $event): void;
 }

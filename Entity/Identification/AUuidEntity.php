@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace BastSys\UtilsBundle\Entity\Identification;
 
@@ -26,7 +27,7 @@ class AUuidEntity implements IUuidEntity
      */
     public function __construct()
     {
-        $this->id = Uuid::uuid4();
+        $this->id = (string) Uuid::uuid4();
     }
 
     /**

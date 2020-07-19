@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace BastSys\UtilsBundle\Model\Lists\Input;
 
@@ -14,7 +15,7 @@ class OrderBy extends \ArrayIterator implements Iterator
     /**
      * Creates OrderBy structure
      *
-     * @param OrderBy $fieldDirectionPairs
+     * @param array $fieldDirectionPairs
      */
     public function __construct(array $fieldDirectionPairs)
     {

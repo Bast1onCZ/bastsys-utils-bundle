@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace BastSys\UtilsBundle\Repository\FetchAllRepository;
 
@@ -24,7 +25,8 @@ trait TFetchAllRepository
 	public function findAll(): array
 	{
 		$this->fetchedAll = true;
-		return parent::findAll();
+        /** @noinspection PhpUndefinedClassInspection */
+        return parent::findAll();
 	}
 
 	/**
