@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace BastSys\UtilsBundle\Entity\Identification;
 
+use BastSys\UtilsBundle\Model\IEquatable;
 use Doctrine\ORM\Mapping as ORM;
 use Ramsey\Uuid\Uuid;
 
@@ -13,7 +14,7 @@ use Ramsey\Uuid\Uuid;
  *
  * @ORM\MappedSuperclass()
  */
-class AUuidEntity implements IUuidEntity
+abstract class AUuidEntity implements IUuidEntity
 {
     /**
      * @var string
@@ -36,5 +37,14 @@ class AUuidEntity implements IUuidEntity
     public function getId(): string
     {
         return $this->id;
+    }
+
+    /**
+     * @param IEquatable $comparable
+     * @return bool
+     */
+    public function equals($comparable): bool
+    {
+        return get_class($comparable) === get_class($this) && $comparable->getId() === $this->id;
     }
 }
