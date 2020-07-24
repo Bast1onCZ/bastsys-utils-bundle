@@ -50,9 +50,8 @@ class DateTimeSet
             return;
         }
 
-        array_reverse($intersectionIndexIndicators); // reverse because of continuous array splicing
-
-        foreach ($intersectionIndexIndicators as $index => $indicator) {
+        for ($index = count($intersectionIndexIndicators) - 1; $index >= 0; $index--) {
+            $indicator = $intersectionIndexIndicators[$index];
             switch ($indicator) {
                 case self::CONTAINED_INTERVAL_INDICATOR:
                     array_splice($this->intervals, $index, 1);
@@ -82,9 +81,8 @@ class DateTimeSet
     {
         $intersectionIndexIndicators = $this->analyzeIntersections($removeInterval);
 
-        array_reverse($intersectionIndexIndicators); // continuous array splicing
-
-        foreach($intersectionIndexIndicators as $index => $indicator) {
+        for ($index = count($intersectionIndexIndicators) - 1; $index >= 0; $index--) {
+            $indicator = $intersectionIndexIndicators[$index];
             $prevInterval = $this->intervals[$index];
             switch ($indicator) {
                 case self::CONTAINED_INTERVAL_INDICATOR:

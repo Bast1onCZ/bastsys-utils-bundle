@@ -244,4 +244,26 @@ class DateTimeSetTest extends TestCase
         $this->assertEquals($end1, $intervals[1]->getStart());
         $this->assertEquals($end0, $intervals[1]->getEnd());
     }
+
+    /**
+     * @throws \Exception
+     */
+    public function testFulfillAddition() {
+        $interval0 = new DateTimeInterval(2000, 4000);
+        $interval1 = new DateTimeInterval(6000, 8000);
+        $interval2 = new DateTimeInterval(10000, 12000);
+
+        $fillInterval = new DateTimeInterval(2500, 11000);
+
+        $set = new DateTimeSet();
+        $set->add($interval0);
+        $set->add($interval1);
+        $set->add($interval2);
+        $set->add($fillInterval);
+
+        $intervals = $set->getIntervals();
+        $this->assertCount(1, $intervals);
+        $this->assertEquals(2000, $intervals[0]->getStart()->getTimestamp());
+        $this->assertEquals(12000, $intervals[0]->getEnd()->getTimestamp());
+    }
 }
