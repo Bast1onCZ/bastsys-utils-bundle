@@ -266,4 +266,52 @@ class DateTimeSetTest extends TestCase
         $this->assertEquals(2000, $intervals[0]->getStart()->getTimestamp());
         $this->assertEquals(12000, $intervals[0]->getEnd()->getTimestamp());
     }
+
+    /**
+     * @throws \Exception
+     */
+    public function testExactRemoval() {
+        $interval0 = new DateTimeInterval(5000, 10000);
+        $interval1 = new DateTimeInterval(5000, 10000);
+
+        $set = new DateTimeSet();
+        $set->add($interval0);
+        $set->remove($interval1);
+
+        $this->assertEmpty($set->getIntervals());
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function testBottomPrecision() {
+        $interval0 = new DateTimeInterval(5000, 10000);
+        $interval1 = new DateTimeInterval(5000 + 1, 10000);
+
+        $set = new DateTimeSet();
+        $set->add($interval0);
+        $set->remove($interval1);
+
+        $intervals = $set->getIntervals();
+        $this->assertCount(1, $intervals);
+        $this->assertEquals(5000, $intervals[0]->getStart()->getTimestamp());
+        $this->assertEquals(5000 + 1, $intervals[0]->getEnd()->getTimestamp());
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function testTopPrecision() {
+        $interval0 = new DateTimeInterval(5000, 10000);
+        $interval1 = new DateTimeInterval(5000, 10000 - 1);
+
+        $set = new DateTimeSet();
+        $set->add($interval0);
+        $set->remove($interval1);
+
+        $intervals = $set->getIntervals();
+        $this->assertCount(1, $intervals);
+        $this->assertEquals(10000 - 1, $intervals[0]->getStart()->getTimestamp());
+        $this->assertEquals(10000, $intervals[0]->getEnd()->getTimestamp());
+    }
 }

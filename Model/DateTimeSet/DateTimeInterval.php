@@ -127,4 +127,16 @@ class DateTimeInterval
     public function getLength(): \DateInterval {
         return $this->start->diff($this->end);
     }
+
+    /**
+     * @return bool
+     * @throws \Exception
+     */
+    public function isEmpty(): bool {
+        $diff = $this->start->diff($this->end);
+        $start = (new \DateTimeImmutable())->setTimestamp(0);
+        $diffPoint = $start->add($diff);
+
+        return $diffPoint->getTimestamp() < 1;
+    }
 }

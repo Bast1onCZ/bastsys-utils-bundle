@@ -30,6 +30,9 @@ class DateTimeSet
      */
     private array $intervals = [];
 
+    /**
+     * DateTimeSet constructor.
+     */
     public function __construct()
     {
     }
@@ -83,24 +86,24 @@ class DateTimeSet
 
         for ($index = count($intersectionIndexIndicators) - 1; $index >= 0; $index--) {
             $indicator = $intersectionIndexIndicators[$index];
-            $prevInterval = $this->intervals[$index];
+            $currentInterval = $this->intervals[$index];
             switch ($indicator) {
                 case self::CONTAINED_INTERVAL_INDICATOR:
                     array_splice($this->intervals, $index, 1);
                     break;
                 case self::PARTLY_INTERSECTED_INTERVAL_INDICATOR:
-                    if($removeInterval->contains($prevInterval->getStart())) {
-                        $prevInterval = $prevInterval->setStart($removeInterval->getEnd());
-                    } else if($removeInterval->contains($prevInterval->getEnd())) {
-                        $prevInterval = $prevInterval->setEnd($removeInterval->getStart());
+                    if($removeInterval->contains($currentInterval->getStart())) {
+                        $currentInterval = $currentInterval->setStart($removeInterval->getEnd());
+                    } else if($removeInterval->contains($currentInterval->getEnd())) {
+                        $currentInterval = $currentInterval->setEnd($removeInterval->getStart());
                     }
-                    $this->intervals[$index] = $prevInterval;
+                    $this->intervals[$index] = $currentInterval;
                     break;
                 case self::WRAPPED_INTERVAL_INDICATOR:
-                    $prevEnd = $prevInterval->getEnd();
+                    $prevEnd = $currentInterval->getEnd();
 
-                    $prevInterval = $prevInterval->setEnd($removeInterval->getStart());
-                    $this->intervals[$index] = $prevInterval;
+                    $currentInterval = $currentInterval->setEnd($removeInterval->getStart());
+                    $this->intervals[$index] = $currentInterval;
 
                     $nextInterval = new DateTimeInterval($removeInterval->getEnd(), $prevEnd);
                     $this->intervals[] = $nextInterval;
@@ -108,6 +111,7 @@ class DateTimeSet
             }
         }
 
+        $this->removeEmptyIntervals();
         $this->sortIntervals();
     }
 
@@ -133,6 +137,12 @@ class DateTimeSet
         }
 
         return $intersectedIndexIndicators;
+    }
+
+    private function removeEmptyIntervals() {
+        $this->intervals = array_filter($this->intervals, function (DateTimeInterval $interval) {
+            return !$interval->isEmpty();
+        });
     }
 
     /**
