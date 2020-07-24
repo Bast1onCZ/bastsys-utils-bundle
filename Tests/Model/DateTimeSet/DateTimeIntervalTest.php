@@ -79,4 +79,35 @@ class DateTimeIntervalTest extends TestCase
         $this->assertEquals(1, $length->s);
         $this->assertEquals(0, $length->invert);
     }
+
+    /**
+     * @throws \Exception
+     */
+    public function testUnixCreation() {
+        $interval = new DateTimeInterval(0, 65000);
+
+        $this->assertEquals(0, $interval->getStart()->getTimestamp());
+        $this->assertEquals(65000, $interval->getEnd()->getTimestamp());
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function testStartAfterEnd() {
+        $this->expectException(\InvalidArgumentException::class);
+        new DateTimeInterval(new \DateTimeImmutable(), new \DateTimeImmutable('-1 day'));
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function testInvalidCreationData() {
+        $this->expectException(\InvalidArgumentException::class);
+
+        /** @var \DateTimeImmutable $start */
+        $start = new \DateTime();
+        /** @var \DateTimeImmutable $end */
+        $end = new \DateTime('+1 day');
+        new DateTimeInterval($start, $end);
+    }
 }

@@ -21,11 +21,32 @@ class DateTimeInterval
 
     /**
      * DateTimeInterval constructor.
-     * @param \DateTimeImmutable $start
-     * @param \DateTimeImmutable $end
+     * @param \DateTimeImmutable|int $start
+     * @param \DateTimeImmutable|int $end
+     * @throws \Exception
      */
-    public function __construct(\DateTimeImmutable $start, \DateTimeImmutable $end)
+    public function __construct($start, $end)
     {
+        if(is_int($start)) {
+            $start = (new \DateTimeImmutable())->setTimestamp($start);
+        }
+        if(is_int($end)) {
+            $end = (new \DateTimeImmutable())->setTimestamp($end);
+        }
+
+        if(!($start instanceof \DateTimeImmutable)) {
+            throw new \InvalidArgumentException('Invalid start type');
+        }
+        if(!($end instanceof \DateTimeImmutable)) {
+            throw new \InvalidArgumentException('Invalid end type');
+        }
+        if($start > $end) {
+            throw new \InvalidArgumentException('Start comes after end');
+        }
+        if($start === $end) {
+            throw new \InvalidArgumentException('Start is equal to end');
+        }
+
         $this->start = $start;
         $this->end = $end;
     }
@@ -49,6 +70,7 @@ class DateTimeInterval
     /**
      * @param \DateTimeImmutable $start
      * @return DateTimeInterval new instance
+     * @throws \Exception
      */
     public function setStart(\DateTimeImmutable $start): DateTimeInterval
     {
@@ -58,6 +80,7 @@ class DateTimeInterval
     /**
      * @param \DateTimeImmutable $end
      * @return DateTimeInterval new instance
+     * @throws \Exception
      */
     public function setEnd(\DateTimeImmutable $end): DateTimeInterval
     {
