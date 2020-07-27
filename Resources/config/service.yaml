@@ -1,0 +1,13 @@
+services:
+    _defaults:
+        public: false
+        autowire: false
+        autoconfigure: false
+
+    bastsys.utils_bundle.service.migration_generator:
+        class: BastSys\UtilsBundle\Service\MigrationGenerator
+        arguments:
+            - '@doctrine.orm.entity_manager'
+            - '@doctrine.migrations.dependency_factory'
+            - '@doctrine_migrations.execute_command'
+        shared: false
