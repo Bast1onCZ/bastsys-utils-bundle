@@ -73,7 +73,7 @@ class MigrationGenerator
             throw new \LogicException('Migration already generated');
         }
 
-        $this->upSql .= '$this->addSql(' . $sql .');' . "\n";
+        $this->upSql .= '$this->addSql("' . $sql .'");' . "\n";
     }
 
     /**
@@ -84,7 +84,7 @@ class MigrationGenerator
             throw new \LogicException('Migration already generated');
         }
 
-        $this->downSql .= '$this->addSql(' . $sql .');' . "\n";
+        $this->downSql .= '$this->addSql("' . $sql .'");' . "\n";
     }
 
     /**
