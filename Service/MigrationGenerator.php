@@ -99,9 +99,10 @@ class MigrationGenerator
             key($this->dependencyFactory->getConfiguration()->getMigrationDirectories())
         );
 
-        $this->migrationId = $this->dependencyFactory->getMigrationGenerator()->generateMigration($fqcn, $this->upSql, $this->downSql);
+        $this->dependencyFactory->getMigrationGenerator()->generateMigration($fqcn, $this->upSql, $this->downSql);
+        $this->migrationId = $fqcn;
 
-        return $this->migrationId;
+        return $fqcn;
     }
 
     /**
@@ -115,7 +116,12 @@ class MigrationGenerator
 
         $output = $output ?? new NullOutput();
 
-        $this->executeCommand->run(new ArrayInput(['--up', $this->migrationId]), $output);
+        $executeInput = new ArrayInput([
+            'versions' => [$this->migrationId],
+            '--up' => true
+        ]);
+        $executeInput->setInteractive(false);
+        $this->executeCommand->run($executeInput, $output);
     }
 
     /**
