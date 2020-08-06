@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace BastSys\UtilsBundle\Repository;
 
 use BastSys\UtilsBundle\Exception\Entity\EntityNotFoundByIdException;
+use BastSys\UtilsBundle\Exception\Entity\EntityNotFoundException;
 use BastSys\UtilsBundle\Model\Lists\Input\AFilter;
 use BastSys\UtilsBundle\Model\Lists\Input\OrderBy;
 use BastSys\UtilsBundle\Model\Lists\Input\Pagination;
@@ -84,6 +85,20 @@ abstract class AEntityRepository implements IEntityRepository
 
         if($notFoundError && !$entity) {
             throw new EntityNotFoundByIdException($this->entityClass, $id);
+        }
+
+        return $entity;
+    }
+
+    /**
+     * @param array $criteria
+     * @return object
+     * @throws EntityNotFoundException
+     */
+    public function findOneBy(array $criteria): object {
+        $entity = $this->repository->findOneBy($criteria);
+        if(!$entity) {
+            throw new EntityNotFoundException('Entity not found by given criteria');
         }
 
         return $entity;
