@@ -16,7 +16,8 @@
         "ramsey/uuid": "^4.0",
         "doctrine/annotations": "^1.10",
         "symfony/orm-pack": "^2.0.0",
-        "symfony/security-bundle": "^5.1"
+        "symfony/security-bundle": "^5.1",
+        "ext-simplexml": "*"
     },
     "autoload": {
         "psr-4": {
