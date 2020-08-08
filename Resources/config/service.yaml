@@ -11,3 +11,6 @@ services:
             - '@doctrine.migrations.dependency_factory'
             - '@doctrine_migrations.execute_command'
         shared: false
+    bastsys.utils_bundle.service.xml_class_loader:
+        class: BastSys\UtilsBundle\Service\XmlClassLoader
+
