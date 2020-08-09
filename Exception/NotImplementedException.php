@@ -10,7 +10,7 @@ use Throwable;
  * @package BastSys\UtilsBundle\Exception
  * @author mirkl
  */
-class NotImplementedException extends \Exception
+class NotImplementedException extends \LogicException
 {
     /**
      * NotImplementedException constructor.
