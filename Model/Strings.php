@@ -36,6 +36,8 @@ class Strings
     }
 
     /**
+     * @deprecated
+     *
      * @param string $entityClass
      * @return string
      */
@@ -112,6 +114,8 @@ class Strings
     }
 
     /**
+     * @deprecated
+     *
      * Gets expected database table name for an entity
      *
      * example 'App\CoreBundle\Entity\Community\User' -> 'core__user'
