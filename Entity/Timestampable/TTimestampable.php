@@ -14,27 +14,27 @@ use Doctrine\ORM\Mapping as ORM;
  */
 trait TTimestampable
 {
-	/**
-	 * @var \DateTime
-	 * @ORM\Column(type="datetime")
-	 */
-	private $createdAt;
+    /**
+     * @var \DateTimeImmutable
+     * @ORM\Column(type="datetime_immutable")
+     */
+    private $createdAt;
 
-	/**
-	 * @var \DateTime
-	 * @ORM\Column(type="datetime")
-	 */
-	private $updatedAt;
+    /**
+     * @var \DateTimeImmutable
+     * @ORM\Column(type="datetime_immutable")
+     */
+    private $updatedAt;
 
-	/**
-	 * Use this method in entity constructor
-	 *
-	 * @throws \Exception
-	 */
-	protected function setCreatedAt(): void {
-		$this->createdAt = new \DateTimeImmutable();
-		$this->updatedAt = new \DateTimeImmutable();
-	}
+    /**
+     * Use this method in entity constructor
+     *
+     * @throws \Exception
+     */
+    protected function setCreatedAt(): void {
+        $this->createdAt = new \DateTimeImmutable();
+        $this->updatedAt = new \DateTimeImmutable();
+    }
 
     /**
      * Use this method whenever entity is updated
@@ -42,22 +42,22 @@ trait TTimestampable
      * @throws \Exception
      */
     protected function setUpdatedAt(): void {
-		$this->updatedAt = new \DateTimeImmutable();
-	}
+        $this->updatedAt = new \DateTimeImmutable();
+    }
 
-	/**
-	 * @return \DateTime
-	 */
-	public function getCreatedAt(): \DateTime
-	{
-		return $this->createdAt;
-	}
+    /**
+     * @return \DateTime
+     */
+    public function getCreatedAt(): \DateTime
+    {
+        return \DateTime::createFromImmutable($this->createdAt);
+    }
 
-	/**
-	 * @return \DateTime
-	 */
-	public function getUpdatedAt(): \DateTime
-	{
-		return $this->updatedAt;
-	}
+    /**
+     * @return \DateTime
+     */
+    public function getUpdatedAt(): \DateTime
+    {
+        return \DateTime::createFromImmutable($this->updatedAt);
+    }
 }
