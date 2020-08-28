@@ -37,7 +37,7 @@ class XmlClassLoader
             }
 
             $type = $this->getDocVarType($prop);
-            $value = $this->typeConvert($data->$propName ?? '', $type);
+            $value = $this->typeConvert((string) ($data->$propName ?? ''), $type);
             $prop->setValue($instance, $value);
 
             if(!$isAccessible) {
