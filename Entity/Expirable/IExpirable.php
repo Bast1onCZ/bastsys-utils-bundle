@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace BastSys\UtilsBundle\Entity\Expirable;
 
+use DateTime;
+
 /**
  * Interface IExpirable
  * @package BastSys\UtilsBundle\Entity\Expirable
@@ -16,7 +18,7 @@ interface IExpirable
     public function hasExpired(): bool;
 
     /**
-     * @return \DateTime|null
+     * @return DateTime|null
      */
-    public function getExpiration(): ?\DateTime;
+    public function getExpiration(): ?DateTime;
 }

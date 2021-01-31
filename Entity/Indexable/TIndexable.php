@@ -19,7 +19,7 @@ trait TIndexable
 	 * @var int
 	 * @ORM\Column(name="`index`", type="integer")
 	 */
-	private $index = -1;
+	private int $index = -1;
 
 	/**
 	 * @param IComparable $indexable

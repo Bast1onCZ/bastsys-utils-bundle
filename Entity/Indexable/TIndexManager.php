@@ -5,6 +5,7 @@ namespace BastSys\UtilsBundle\Entity\Indexable;
 
 use BastSys\UtilsBundle\Entity\Identification\IIdentifiableEntity;
 use Doctrine\Common\Collections\Collection;
+use InvalidArgumentException;
 
 /**
  * Trait TIndexManager
@@ -31,13 +32,13 @@ trait TIndexManager
 
         $currentIndex = array_search($item, $values);
         if (!is_numeric($currentIndex)) {
-            throw new \InvalidArgumentException('Indexable item is not contained in given array of indexable items', 500);
+            throw new InvalidArgumentException('Indexable item is not contained in given array of indexable items', 500);
         }
         if($newItemIndex < 0) {
-            throw new \InvalidArgumentException('newItemIndex < 0', 400);
+            throw new InvalidArgumentException('newItemIndex < 0', 400);
         }
         if($newItemIndex > count($values)) {
-            throw new \InvalidArgumentException('newItemIndex > count($items)', 400);
+            throw new InvalidArgumentException('newItemIndex > count($items)', 400);
         }
 
         array_splice($values, $currentIndex, 1);

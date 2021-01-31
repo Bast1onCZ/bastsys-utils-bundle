@@ -3,12 +3,14 @@ declare(strict_types=1);
 
 namespace BastSys\UtilsBundle\Exception;
 
+use RuntimeException;
+
 /**
  * Class TraitNotImplementingInterfaceException
  * @package BastSys\UtilsBundle\Exception
  * @author mirkl
  */
-class TraitNotImplementingInterfaceException extends \RuntimeException
+class TraitNotImplementingInterfaceException extends RuntimeException
 {
     /**
      * TraitNotImplementingInterfaceException constructor.

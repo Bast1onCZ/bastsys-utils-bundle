@@ -4,6 +4,13 @@ declare(strict_types=1);
 namespace BastSys\UtilsBundle\Service;
 
 use BastSys\UtilsBundle\Exception\NotImplementedException;
+use DateTime;
+use Exception;
+use InvalidArgumentException;
+use ReflectionClass;
+use ReflectionException;
+use ReflectionProperty;
+use SimpleXMLElement;
 
 /**
  * Class XmlClassLoader
@@ -16,16 +23,16 @@ class XmlClassLoader
 {
     /**
      * @param string $class
-     * @param \SimpleXMLElement $data
+     * @param SimpleXMLElement $data
      *
      * @return object instance of given class
-     * @throws \ReflectionException
+     * @throws ReflectionException
      * @throws NotImplementedException
      */
-    public function loadClass(string $class, \SimpleXMLElement $data): object {
+    public function loadClass(string $class, SimpleXMLElement $data): object {
         $instance = new $class();
 
-        $ref = new \ReflectionClass($class);
+        $ref = new ReflectionClass($class);
         $properties = $this->getAllProperties($ref);
 
         foreach($properties as $prop) {
@@ -49,11 +56,11 @@ class XmlClassLoader
     }
 
     /**
-     * @param \ReflectionClass $class
-     * @return \ReflectionProperty[]
+     * @param ReflectionClass $class
+     * @return ReflectionProperty[]
      */
-    private function getAllProperties(\ReflectionClass $class): array {
-        $filter = \ReflectionProperty::IS_PRIVATE | \ReflectionProperty::IS_PROTECTED | \ReflectionProperty::IS_PUBLIC;
+    private function getAllProperties(ReflectionClass $class): array {
+        $filter = ReflectionProperty::IS_PRIVATE | ReflectionProperty::IS_PROTECTED | ReflectionProperty::IS_PUBLIC;
         $properties = $class->getProperties($filter);
 
         $parentClass = $class;
@@ -68,26 +75,26 @@ class XmlClassLoader
     }
 
     /**
-     * @param \ReflectionProperty $property
+     * @param ReflectionProperty $property
      * @return string
      */
-    private function getDocVarType(\ReflectionProperty $property): string {
+    private function getDocVarType(ReflectionProperty $property): string {
         $matches = [];
         preg_match('/@var\s+([\S]+)/', $property->getDocComment(), $matches);
         if(!isset($matches[1])) {
             $propName = $property->getName();
-            throw new \InvalidArgumentException("Doc comment of property '$propName' does not contain valid @var annotation");
+            throw new InvalidArgumentException("Doc comment of property '$propName' does not contain valid @var annotation");
         }
 
         return $matches[1];
     }
 
-    /**
-     * @param string $value
-     * @param \ReflectionType $type
-     * @return \DateTime|string
-     * @throws NotImplementedException
-     */
+	/**
+	 * @param string $value
+	 * @param string $phpdocType
+	 *
+	 * @return DateTime|string
+	 */
     private function typeConvert(string $value, string $phpdocType) {
         $result = $value;
 
@@ -110,9 +117,9 @@ class XmlClassLoader
             case 'DateTime':
             case '\DateTime':
                 try {
-                    $result = new \DateTime($value);
-                } catch(\Exception $ex) {
-                    throw new \InvalidArgumentException("Invalid datetime '$preferredType'");
+                    $result = new DateTime($value);
+                } catch(Exception $ex) {
+                    throw new InvalidArgumentException("Invalid datetime '$preferredType'");
                 }
                 break;
             default:

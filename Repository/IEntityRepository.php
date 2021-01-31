@@ -4,8 +4,8 @@ declare(strict_types=1);
 namespace BastSys\UtilsBundle\Repository;
 
 use BastSys\UtilsBundle\Exception\Entity\EntityNotFoundByIdException;
-use Doctrine\Common\Persistence\ObjectRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Persistence\ObjectRepository;
 
 /**
  * Interface IEntityRepository

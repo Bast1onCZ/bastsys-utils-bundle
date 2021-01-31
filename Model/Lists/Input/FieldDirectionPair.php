@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace BastSys\UtilsBundle\Model\Lists\Input;
 
+use InvalidArgumentException;
+
 /**
  * Class FieldDirectionPair
  * @package BastSys\UtilsBundle\Model\Lists\Input
@@ -13,12 +15,12 @@ class FieldDirectionPair
     /**
      * @var string
      */
-    private $field;
+	private string $field;
 
     /**
      * @var string
      */
-    private $direction;
+	private string $direction;
 
     /**
      * FieldDirectionPair constructor.
@@ -29,7 +31,7 @@ class FieldDirectionPair
     public function __construct(string $field, string $direction)
     {
         if (!in_array($direction, OrderByDirection::getOptions())) {
-            throw new \InvalidArgumentException("Invalid direction '$direction'");
+            throw new InvalidArgumentException("Invalid direction '$direction'");
         }
 
         $this->field = $field;

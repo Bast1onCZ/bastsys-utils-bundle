@@ -17,5 +17,5 @@ interface IEquatable
 	 *
 	 * @return bool
 	 */
-	function equals($comparable): bool;
+	function equals(IEquatable $comparable): bool;
 }

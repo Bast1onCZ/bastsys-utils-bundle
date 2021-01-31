@@ -20,7 +20,7 @@ trait TEntityManagerAware
     /**
      * @var EntityManagerInterface
      */
-    protected $entityManager;
+	protected EntityManagerInterface $entityManager;
 
     /**
      * @ORM\PrePersist()

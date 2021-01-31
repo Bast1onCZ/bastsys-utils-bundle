@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace BastSys\UtilsBundle\Model\Lists\Input;
 
 use BastSys\UtilsBundle\Model\Lists\Output\UnknownPageException;
+use InvalidArgumentException;
 
 /**
  * Class Pagination
@@ -27,10 +28,10 @@ class Pagination
 	}
 
 	/** @var int */
-	private $limit;
+	private int $limit;
 
 	/** @var int */
-	private $offset;
+	private int $offset;
 
 	/**
 	 * Creates pagination structure
@@ -41,7 +42,7 @@ class Pagination
 	public function __construct(int $offset, int $limit)
 	{
 		if ($offset < 0) {
-			throw new \InvalidArgumentException("Invalid offset ($offset)");
+			throw new InvalidArgumentException("Invalid offset ($offset)");
 		}
 
 		$this->offset = $offset;

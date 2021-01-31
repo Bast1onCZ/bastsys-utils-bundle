@@ -36,10 +36,10 @@ class Interval
 	private $max;
 
 	/** @var bool */
-	private $minContained;
+	private bool $minContained;
 
 	/** @var bool */
-	private $maxContained;
+	private bool $maxContained;
 
     /**
      * Interval constructor.

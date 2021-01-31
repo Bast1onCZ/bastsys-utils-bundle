@@ -11,24 +11,24 @@ use Symfony\Component\Security\Core\Encoder\PasswordEncoderInterface;
  * @author mirkl
  */
 class PasswordEncoder implements PasswordEncoderInterface {
-    /**
-     * @param string      $raw
-     * @param string|null $salt
-     *
-     * @return bool|string
-     */
-    public function encodePassword($raw, $salt) {
+	/**
+	 * @param string      $raw
+	 * @param string|null $salt
+	 *
+	 * @return bool|string
+	 */
+    public function encodePassword(string $raw, ?string $salt) {
         return password_hash($raw, PASSWORD_BCRYPT);
     }
 
-    /**
-     * @param string      $encoded
-     * @param string      $raw
-     * @param string|null $salt
-     *
-     * @return bool
-     */
-    public function isPasswordValid($encoded, $raw, $salt) {
+	/**
+	 * @param string      $encoded
+	 * @param string      $raw
+	 * @param string|null $salt
+	 *
+	 * @return bool
+	 */
+    public function isPasswordValid(string $encoded, string $raw, ?string $salt) {
         return password_verify($raw, $encoded);
     }
 

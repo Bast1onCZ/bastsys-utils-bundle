@@ -15,7 +15,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 trait TPersistAware
 {
-    private $isPersisted = false;
+	private bool $isPersisted = false;
 
     /**
      * @return bool

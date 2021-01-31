@@ -10,14 +10,14 @@ namespace BastSys\UtilsBundle\Model;
  */
 class Strings
 {
-    /**
-     * Gets bundle name from the namespace of the class
-     *
-     * @param object $object
-     *
-     * @return string bundle name of the given object
-     */
-    public static function getBundleName($object): string
+	/**
+	 * Gets bundle name from the namespace of the class
+	 *
+	 * @param object $object
+	 *
+	 * @return string bundle name of the given object
+	 */
+    public static function getBundleName(object $object): string
     {
         $class = get_class($object);
 

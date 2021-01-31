@@ -33,10 +33,10 @@ interface ITree extends IIdentifiableEntity
      */
     function getParent(): ?ITree;
 
-    /**
-     * @param ITree $tree
-     *
-     * @return ITree
-     */
+	/**
+	 * @param ITree|null $tree
+	 *
+	 * @return ITree
+	 */
     function setParent(?ITree $tree): self;
 }

@@ -6,6 +6,8 @@ namespace BastSys\UtilsBundle\Service;
 use Doctrine\Migrations\DependencyFactory;
 use Doctrine\Migrations\Tools\Console\Command\ExecuteCommand;
 use Doctrine\ORM\EntityManagerInterface;
+use Exception;
+use LogicException;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Output\NullOutput;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -70,7 +72,7 @@ class MigrationGenerator
      */
     public function addUpSql(string $sql): void {
         if($this->migrationId) {
-            throw new \LogicException('Migration already generated');
+            throw new LogicException('Migration already generated');
         }
 
         $this->upSql .= '$this->addSql("' . $sql .'");' . "\n";
@@ -81,7 +83,7 @@ class MigrationGenerator
      */
     public function addDownSql(string $sql): void {
         if($this->migrationId) {
-            throw new \LogicException('Migration already generated');
+            throw new LogicException('Migration already generated');
         }
 
         $this->downSql .= '$this->addSql("' . $sql .'");' . "\n";
@@ -92,7 +94,7 @@ class MigrationGenerator
      */
     public function generate(): string {
         if(!$this->upSql || !$this->downSql) {
-            throw new \LogicException('Cannot generate empty migration');
+            throw new LogicException('Cannot generate empty migration');
         }
 
         $fqcn = $this->dependencyFactory->getClassNameGenerator()->generateClassName(
@@ -107,11 +109,11 @@ class MigrationGenerator
 
     /**
      * @param OutputInterface|null $output
-     * @throws \Exception
+     * @throws Exception
      */
     public function execute(?OutputInterface $output = null) {
         if(!$this->migrationId) {
-            throw new \LogicException('Migration not generated yet');
+            throw new LogicException('Migration not generated yet');
         }
 
         $output = $output ?? new NullOutput();

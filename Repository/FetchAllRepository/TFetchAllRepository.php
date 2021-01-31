@@ -15,7 +15,7 @@ trait TFetchAllRepository
     /**
      * @var bool
      */
-    private $fetchedAll = false;
+	private bool $fetchedAll = false;
 
 	/**
 	 * Overrides findAll() function, when called, fetchedAll identificator is set to true

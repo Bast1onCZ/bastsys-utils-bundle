@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace BastSys\UtilsBundle\Exception;
 
+use LogicException;
 use Throwable;
 
 /**
@@ -10,7 +11,7 @@ use Throwable;
  * @package BastSys\UtilsBundle\Exception
  * @author mirkl
  */
-class NotImplementedException extends \LogicException
+class NotImplementedException extends LogicException
 {
     /**
      * NotImplementedException constructor.

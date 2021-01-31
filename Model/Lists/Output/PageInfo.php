@@ -13,10 +13,10 @@ use BastSys\UtilsBundle\Model\Lists\Input\Pagination;
 class PageInfo
 {
 	/** @var Pagination */
-	private $pagination;
+	private Pagination $pagination;
 
 	/** @var bool */
-	private $hasNextPage;
+	private bool $hasNextPage;
 
     /**
      * PageInfo constructor.

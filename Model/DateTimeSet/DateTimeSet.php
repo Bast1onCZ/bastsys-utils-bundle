@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace BastSys\UtilsBundle\Model\DateTimeSet;
 
 use BastSys\UtilsBundle\Model\Arrays;
+use Exception;
 
 /**
  * Class DateTimeSet
@@ -39,7 +40,7 @@ class DateTimeSet
 
     /**
      * @param DateTimeInterval $addInterval
-     * @throws \Exception
+     * @throws Exception
      */
     public function add(DateTimeInterval $addInterval): void
     {
@@ -78,7 +79,7 @@ class DateTimeSet
 
     /**
      * @param DateTimeInterval $removeInterval
-     * @throws \Exception
+     * @throws Exception
      */
     public function remove(DateTimeInterval $removeInterval): void
     {
@@ -118,7 +119,7 @@ class DateTimeSet
     /**
      * @param DateTimeInterval $interval
      * @return array [$index => $intersectionIndicator, ...]
-     * @throws \Exception
+     * @throws Exception
      */
     private function analyzeIntersections(DateTimeInterval $interval): array
     {
@@ -139,6 +140,9 @@ class DateTimeSet
         return $intersectedIndexIndicators;
     }
 
+	/**
+	 * @throws Exception
+	 */
     private function removeEmptyIntervals() {
         $this->intervals = array_filter($this->intervals, function (DateTimeInterval $interval) {
             return !$interval->isEmpty();

@@ -39,11 +39,12 @@ abstract class AUuidEntity implements IUuidEntity
         return $this->id;
     }
 
-    /**
-     * @param IEquatable $comparable
-     * @return bool
-     */
-    public function equals($comparable): bool
+	/**
+	 * @param IEquatable $comparable
+	 *
+	 * @return bool
+	 */
+    public function equals(IEquatable $comparable): bool
     {
         return get_class($comparable) === get_class($this) && $comparable->getId() === $this->id;
     }

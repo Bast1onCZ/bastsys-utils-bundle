@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace BastSys\UtilsBundle\Exception\Entity;
 
+use RuntimeException;
 use Throwable;
 
 /**
@@ -10,7 +11,7 @@ use Throwable;
  * @package BastSys\UtilsBundle\Exception\Entity
  * @author mirkl
  */
-class EntityNotFoundException extends \RuntimeException
+class EntityNotFoundException extends RuntimeException
 {
     /**
      * EntityNotFoundException constructor.

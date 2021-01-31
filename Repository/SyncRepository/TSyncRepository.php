@@ -6,6 +6,7 @@ namespace BastSys\UtilsBundle\Repository\SyncRepository;
 use BastSys\UtilsBundle\Entity\ISyncableEntity;
 use BastSys\UtilsBundle\Exception\Entity\EntityNotFoundByIdException;
 use Doctrine\ORM\EntityManagerInterface;
+use InvalidArgumentException;
 
 /**
  * Trait TSyncRepository
@@ -21,7 +22,7 @@ trait TSyncRepository
         // validation
         foreach($syncEntities as $entity) {
             if(!$this->isValidEntity($entity)) {
-                throw new \InvalidArgumentException('Invalid entity type supplied', 500);
+                throw new InvalidArgumentException('Invalid entity type supplied', 500);
             }
         }
 

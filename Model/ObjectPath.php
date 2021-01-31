@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace BastSys\UtilsBundle\Model;
 
+use InvalidArgumentException;
+
 /**
  * Class ObjectPathKey
  * @package BastSys\UtilsBundle\Model
@@ -33,7 +35,7 @@ class ObjectPath
     public function __construct(string $path)
     {
         if(!preg_match('/^[\w.]*$/', $path)) {
-            throw new \InvalidArgumentException("Invalid path '$path'");
+            throw new InvalidArgumentException("Invalid path '$path'");
         }
 
         $this->parts = explode('.', $path);

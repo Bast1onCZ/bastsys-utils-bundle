@@ -13,7 +13,7 @@ class RawCurrency implements ICurrency
     /**
      * @var string
      */
-    private $code;
+	private string $code;
 
     /**
      * RawCurrency constructor.

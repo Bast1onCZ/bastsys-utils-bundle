@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace BastSys\UtilsBundle\Entity\Timestampable;
 
+use DateTime;
+
 /**
  * Interface ITimestampable
  * @package BastSys\UtilsBundle\Entity\Timestampable
@@ -11,12 +13,12 @@ namespace BastSys\UtilsBundle\Entity\Timestampable;
 interface ITimestampable
 {
 	/**
-	 * @return \DateTime
+	 * @return DateTime
 	 */
-	function getCreatedAt(): \DateTime;
+	function getCreatedAt(): DateTime;
 
 	/**
-	 * @return \DateTime
+	 * @return DateTime
 	 */
-	function getUpdatedAt(): \DateTime;
+	function getUpdatedAt(): DateTime;
 }

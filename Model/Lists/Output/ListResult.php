@@ -14,19 +14,22 @@ use Doctrine\ORM\Tools\Pagination\Paginator;
 class ListResult
 {
 	/** @var int */
-	private $totalCount;
+	private int $totalCount;
 
 	/** @var PageInfo */
-	private $pageInfo;
+	private PageInfo $pageInfo;
 
 	/** @var array */
-	private $edges;
+	private array $edges;
 
-    /**
-     * ListResult constructor.
-     * @param Paginator $paginator
-     * @param Pagination $pagination
-     */
+	/**
+	 * ListResult constructor.
+	 *
+	 * @param Paginator  $paginator
+	 * @param Pagination $pagination
+	 *
+	 * @throws \Exception
+	 */
     public function __construct(Paginator $paginator, Pagination $pagination)
 	{
 		$this->totalCount = $paginator->count();

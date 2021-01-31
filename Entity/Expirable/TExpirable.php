@@ -3,7 +3,10 @@ declare(strict_types=1);
 
 namespace BastSys\UtilsBundle\Entity\Expirable;
 
+use DateTime;
+use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
+use Exception;
 
 /**
  * Trait TExpirable
@@ -15,30 +18,30 @@ use Doctrine\ORM\Mapping as ORM;
 trait TExpirable
 {
     /**
-     * @var \DateTime|null
+     * @var DateTime|null
      * @ORM\Column(type="datetime", nullable=true)
      */
-    private $expiration;
+	private ?DateTime $expiration;
 
     /**
      * @return bool
-     * @throws \Exception
+     * @throws Exception
      */
     public function hasExpired(): bool {
-        return $this->expiration && $this->expiration < new \DateTimeImmutable();
+        return $this->expiration && $this->expiration < new DateTimeImmutable();
     }
 
     /**
-     * @return \DateTime|null
+     * @return DateTime|null
      */
-    public function getExpiration(): ?\DateTime {
+    public function getExpiration(): ?DateTime {
         return $this->expiration;
     }
 
     /**
-     * @param \DateTime|null $expiration
+     * @param DateTime|null $expiration
      */
-    public function setExpiration(?\DateTime $expiration): void {
+    public function setExpiration(?DateTime $expiration): void {
         $this->expiration = $expiration;
     }
 }

@@ -3,6 +3,12 @@ declare(strict_types=1);
 
 namespace BastSys\UtilsBundle\Model\DateTimeSet;
 
+use DateInterval;
+use DateTime;
+use DateTimeImmutable;
+use Exception;
+use InvalidArgumentException;
+
 /**
  * Class DateTimeInterval
  * @package BastSys\UtilsBundle\Model\DateTimeSet
@@ -11,40 +17,40 @@ namespace BastSys\UtilsBundle\Model\DateTimeSet;
 class DateTimeInterval
 {
     /**
-     * @var \DateTimeImmutable
+     * @var DateTimeImmutable
      */
-    private \DateTimeImmutable $start;
+    private DateTimeImmutable $start;
     /**
-     * @var \DateTimeImmutable
+     * @var DateTimeImmutable
      */
-    private \DateTimeImmutable $end;
+    private DateTimeImmutable $end;
 
     /**
      * DateTimeInterval constructor.
-     * @param \DateTimeImmutable|int $start
-     * @param \DateTimeImmutable|int $end
-     * @throws \Exception
+     * @param DateTimeImmutable|int $start
+     * @param DateTimeImmutable|int $end
+     * @throws Exception
      */
     public function __construct($start, $end)
     {
         if(is_int($start)) {
-            $start = (new \DateTimeImmutable())->setTimestamp($start);
+            $start = (new DateTimeImmutable())->setTimestamp($start);
         }
         if(is_int($end)) {
-            $end = (new \DateTimeImmutable())->setTimestamp($end);
+            $end = (new DateTimeImmutable())->setTimestamp($end);
         }
 
-        if(!($start instanceof \DateTimeImmutable)) {
-            throw new \InvalidArgumentException('Invalid start type');
+        if(!($start instanceof DateTimeImmutable)) {
+            throw new InvalidArgumentException('Invalid start type');
         }
-        if(!($end instanceof \DateTimeImmutable)) {
-            throw new \InvalidArgumentException('Invalid end type');
+        if(!($end instanceof DateTimeImmutable)) {
+            throw new InvalidArgumentException('Invalid end type');
         }
         if($start > $end) {
-            throw new \InvalidArgumentException('Start comes after end');
+            throw new InvalidArgumentException('Start comes after end');
         }
         if($start === $end) {
-            throw new \InvalidArgumentException('Start is equal to end');
+            throw new InvalidArgumentException('Start is equal to end');
         }
 
         $this->start = $start;
@@ -52,37 +58,37 @@ class DateTimeInterval
     }
 
     /**
-     * @return \DateTimeImmutable
+     * @return DateTimeImmutable
      */
-    public function getStart(): \DateTimeImmutable
+    public function getStart(): DateTimeImmutable
     {
         return $this->start;
     }
 
     /**
-     * @return \DateTimeImmutable
+     * @return DateTimeImmutable
      */
-    public function getEnd(): \DateTimeImmutable
+    public function getEnd(): DateTimeImmutable
     {
         return $this->end;
     }
 
     /**
-     * @param \DateTimeImmutable $start
+     * @param DateTimeImmutable $start
      * @return DateTimeInterval new instance
-     * @throws \Exception
+     * @throws Exception
      */
-    public function setStart(\DateTimeImmutable $start): DateTimeInterval
+    public function setStart(DateTimeImmutable $start): DateTimeInterval
     {
         return new DateTimeInterval($start, $this->end);
     }
 
     /**
-     * @param \DateTimeImmutable $end
+     * @param DateTimeImmutable $end
      * @return DateTimeInterval new instance
-     * @throws \Exception
+     * @throws Exception
      */
-    public function setEnd(\DateTimeImmutable $end): DateTimeInterval
+    public function setEnd(DateTimeImmutable $end): DateTimeInterval
     {
         return new DateTimeInterval($this->start, $end);
     }
@@ -90,12 +96,13 @@ class DateTimeInterval
     /**
      * Checks whether this complex interval fully contains given value
      *
-     * @param \DateTime|\DateTimeImmutable|DateTimeInterval $entity
+     * @param DateTime|DateTimeImmutable|DateTimeInterval $entity
+     *
      * @return bool
-     * @throws \Exception
+     * @throws Exception
      */
     public function contains($entity): bool {
-        if($entity instanceof \DateTime || $entity instanceof \DateTimeImmutable) {
+        if($entity instanceof DateTime || $entity instanceof DateTimeImmutable) {
             // compare single interval
             return $this->start <= $entity && $entity <= $this->end;
         } else if($entity instanceof DateTimeInterval) {
@@ -103,7 +110,7 @@ class DateTimeInterval
             return $this->contains($entity->getStart()) &&
                 $this->contains($entity->getEnd());
         } else {
-            throw new \InvalidArgumentException('Invalid entity');
+            throw new InvalidArgumentException('Invalid entity');
         }
     }
 
@@ -112,7 +119,7 @@ class DateTimeInterval
      *
      * @param DateTimeInterval $interval
      * @return bool
-     * @throws \Exception
+     * @throws Exception
      */
     public function intersects(DateTimeInterval $interval): bool {
         return $this->contains($interval->getStart()) ||
@@ -122,19 +129,19 @@ class DateTimeInterval
     }
 
     /**
-     * @return \DateInterval
+     * @return DateInterval
      */
-    public function getLength(): \DateInterval {
+    public function getLength(): DateInterval {
         return $this->start->diff($this->end);
     }
 
     /**
      * @return bool
-     * @throws \Exception
+     * @throws Exception
      */
     public function isEmpty(): bool {
         $diff = $this->start->diff($this->end);
-        $start = (new \DateTimeImmutable())->setTimestamp(0);
+        $start = (new DateTimeImmutable())->setTimestamp(0);
         $diffPoint = $start->add($diff);
 
         return $diffPoint->getTimestamp() < 1;

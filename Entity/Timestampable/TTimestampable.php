@@ -3,7 +3,10 @@ declare(strict_types=1);
 
 namespace BastSys\UtilsBundle\Entity\Timestampable;
 
+use DateTime;
+use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
+use Exception;
 
 /**
  * Trait TTimestampable
@@ -15,49 +18,49 @@ use Doctrine\ORM\Mapping as ORM;
 trait TTimestampable
 {
     /**
-     * @var \DateTimeImmutable
+     * @var DateTimeImmutable
      * @ORM\Column(type="datetime_immutable")
      */
-    private $createdAt;
+	private DateTimeImmutable $createdAt;
 
     /**
-     * @var \DateTimeImmutable
+     * @var DateTimeImmutable
      * @ORM\Column(type="datetime_immutable")
      */
-    private $updatedAt;
+	private DateTimeImmutable $updatedAt;
 
     /**
      * Use this method in entity constructor
      *
-     * @throws \Exception
+     * @throws Exception
      */
     protected function setCreatedAt(): void {
-        $this->createdAt = new \DateTimeImmutable();
-        $this->updatedAt = new \DateTimeImmutable();
+        $this->createdAt = new DateTimeImmutable();
+        $this->updatedAt = new DateTimeImmutable();
     }
 
     /**
      * Use this method whenever entity is updated
      *
-     * @throws \Exception
+     * @throws Exception
      */
     protected function setUpdatedAt(): void {
-        $this->updatedAt = new \DateTimeImmutable();
+        $this->updatedAt = new DateTimeImmutable();
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
-    public function getCreatedAt(): \DateTime
+    public function getCreatedAt(): DateTime
     {
-        return \DateTime::createFromImmutable($this->createdAt);
+        return DateTime::createFromImmutable($this->createdAt);
     }
 
     /**
-     * @return \DateTime
+     * @return DateTime
      */
-    public function getUpdatedAt(): \DateTime
+    public function getUpdatedAt(): DateTime
     {
-        return \DateTime::createFromImmutable($this->updatedAt);
+        return DateTime::createFromImmutable($this->updatedAt);
     }
 }

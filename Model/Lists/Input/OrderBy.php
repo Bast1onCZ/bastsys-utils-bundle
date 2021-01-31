@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace BastSys\UtilsBundle\Model\Lists\Input;
 
+use ArrayIterator;
 use Iterator;
 
 /**
@@ -10,7 +11,7 @@ use Iterator;
  * @package BastSys\UtilsBundle\Model\Lists\Input
  * @author mirkl
  */
-class OrderBy extends \ArrayIterator implements Iterator
+class OrderBy extends ArrayIterator implements Iterator
 {
     /**
      * Creates OrderBy structure

@@ -10,10 +10,11 @@ use BastSys\UtilsBundle\Model\Lists\Input\OrderBy;
 use BastSys\UtilsBundle\Model\Lists\Input\Pagination;
 use BastSys\UtilsBundle\Model\Lists\Output\ListResult;
 use Doctrine\Common\Collections\Criteria;
-use Doctrine\Common\Persistence\ObjectRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\ORM\Query\QueryException;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\Tools\Pagination\Paginator;
+use Doctrine\Persistence\ObjectRepository;
 
 /**
  * Class AEntityRepository
@@ -25,23 +26,24 @@ abstract class AEntityRepository implements IEntityRepository
     /**
      * @var string
      */
-    protected $entityClass;
+	protected string $entityClass;
 
     /**
      * @var EntityManagerInterface
      */
-    protected $entityManager;
+	protected EntityManagerInterface $entityManager;
 
     /**
      * @var ObjectRepository
      */
-    protected $repository;
+	protected ObjectRepository $repository;
 
-    /**
-     * AEntityRepository constructor.
-     * @param string $entityClass
-     * @param EntityManagerInterface $entityManager
-     */
+	/**
+	 * AEntityRepository constructor.
+	 *
+	 * @param string                      $entityClass
+	 * @param EntityManagerInterface|null $entityManager
+	 */
     public function __construct(string $entityClass, EntityManagerInterface $entityManager = null)
     {
         $this->entityClass = $entityClass;
@@ -117,7 +119,7 @@ abstract class AEntityRepository implements IEntityRepository
      * @param array $ids
      *
      * @return array
-     * @throws \Doctrine\ORM\Query\QueryException
+     * @throws QueryException
      */
     public function findAllById(array $ids): array {
         $qb = $this->entityManager->createQueryBuilder()
@@ -160,15 +162,15 @@ abstract class AEntityRepository implements IEntityRepository
         );
     }
 
-    /**
-     * Prepares paginator for given parameters
-     *
-     * @param Pagination $pagination
-     * @param OrderBy $orderBy
-     * @param AFilter|null $filter
-     *
-     * @return Paginator
-     */
+	/**
+	 * Prepares paginator for given parameters
+	 *
+	 * @param Pagination   $pagination
+	 * @param OrderBy|null $orderBy
+	 * @param AFilter|null $filter
+	 *
+	 * @return Paginator
+	 */
     protected function preparePaginator(
         Pagination $pagination,
         OrderBy $orderBy = null,
@@ -180,15 +182,15 @@ abstract class AEntityRepository implements IEntityRepository
         return new Paginator($qb);
     }
 
-    /**
-     * Prepares QueryBuilder to perform list query. Override this to applyOnEntity filter
-     *
-     * @param Pagination $pagination
-     * @param OrderBy $orderBy
-     * @param AFilter $filter
-     *
-     * @return QueryBuilder
-     */
+	/**
+	 * Prepares QueryBuilder to perform list query. Override this to applyOnEntity filter
+	 *
+	 * @param Pagination   $pagination
+	 * @param OrderBy|null $orderBy
+	 * @param AFilter|null $filter
+	 *
+	 * @return QueryBuilder
+	 */
     protected function prepareListQueryBuilder(
         Pagination $pagination,
         OrderBy $orderBy = null,

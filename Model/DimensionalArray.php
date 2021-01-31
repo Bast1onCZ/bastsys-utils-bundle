@@ -12,7 +12,7 @@ class DimensionalArray {
     /**
      * @var array
      */
-    private $array;
+	private array $array;
 
     /**
      * DimensionalArray constructor.
